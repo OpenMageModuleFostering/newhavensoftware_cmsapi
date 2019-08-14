@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns:typens="urn:{{var wsdl.name}}" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/"
+name="{{var wsdl.name}}" targetNamespace="urn:{{var wsdl.name}}" xmlns:ns0="urn:Magento">
+  <types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:Magento">
+      <import namespace="http://schemas.xmlsoap.org/soap/encoding/" schemaLocation="http://schemas.xmlsoap.org/soap/encoding/" />
+      <complexType name="catalogProductCreateEntity">
+        <all>
+          <element name="configurable_products" type="typens:associativeAttributeArray" minOccurs="0"/>
+          <element name="configurable_attributes" type="typens:catalogProductConfigurableAttributesArray" minOccurs="0"/>
+        </all>
+      </complexType>
+      <complexType name="catalogProductConfigurableAttributeEntity">
+        <all>
+          <element name="attribute_id" type="xsd:int"/>
+          <element name="label" type="xsd:string"/>
+          <element name="value_index" type="xsd:int"/>
+          <element name="is_percent" type="xsd:int"/>
+          <element name="pricing_value" type="xsd:string"/>
+        </all>
+      </complexType>
+      <complexType name="associativeAttributeEntity">
+        <all>
+          <element name="key" type="xsd:string" />
+          <element name="value" type="typens:catalogProductConfigurableAttributeArray" />
+        </all>
+      </complexType>
+      <complexType name="associativeAttributeArray">
+        <complexContent>
+          <restriction base="soapenc:Array">
+            <attribute ref="soapenc:arrayType" wsdl:arrayType="typens:associativeAttributeEntity[]" />
+          </restriction>
+        </complexContent>
+      </complexType>
+      <complexType name="catalogProductConfigurableAttributeArray">
+        <complexContent>
+          <restriction base="soapenc:Array">
+            <attribute ref="soapenc:arrayType" wsdl:arrayType="typens:catalogProductConfigurableAttributeEntity[]" />
+          </restriction>
+        </complexContent>
+      </complexType>
+      <complexType name="catalogProductConfigurableAttributesEntity">
+        <all>
+          <element name="id" type="xsd:int" />
+          <element name="label" type="xsd:string" />
+          <element name="position" type="xsd:string" />
+          <element name="values" type="typens:associativeAttributeArray" />
+          <element name="attribute_id" type="xsd:int" />
+          <element name="attribute_code" type="xsd:string" />
+          <element name="frontend_label" type="xsd:string" />
+          <element name="html_id" type="xsd:string" />
+        </all>
+      </complexType>
+      <complexType name="catalogProductConfigurableAttributesArray">
+        <complexContent>
+          <restriction base="soapenc:Array">
+            <attribute ref="soapenc:arrayType" wsdl:arrayType="typens:catalogProductConfigurableAttributesEntity[]" />
+          </restriction>
+        </complexContent>
+      </complexType>
+      <complexType name="cmsapiGiftMessageEntity">
+        <all>
+          <element name="sender" type="xsd:string" />
+          <element name="recipient" type="xsd:string" />
+          <element name="message" type="xsd:string" />
+        </all>
+      </complexType>
+    </schema>
+  </types>
+  <message name="cmsapiCustomFieldsRequest">
+    <part name="sessionId" type="xsd:string"/>
+    <part name="orderIncrementId" type="xsd:string"/>
+  </message>
+  <message name="cmsapiCustomFieldsResponse">
+    <part name="result" type="xsd:string"/>
+  </message>
+  <message name="cmsapiGiftMessageInfoRequest">
+    <part name="sessionId" type="xsd:string"/>
+    <part name="giftMessageId" type="xsd:string"/>
+  </message>
+  <message name="cmsapiGiftMessageInfoResponse">
+    <part name="result" type="typens:cmsapiGiftMessageEntity"/>
+  </message>
+  <message name="cmsapiChecknhsInstalledRequest">
+    <part name="sessionId" type="xsd:string"/>
+  </message>
+  <message name="cmsapiChecknhsInstalledResponse">
+    <part name="result" type="xsd:boolean"/>
+  </message>
+  <portType name="{{var wsdl.handler}}PortType">
+    <operation name="cmsapiChecknhsInstalled">
+      <documentation>Is the NHS extension installed?</documentation>
+      <input name="cmsapiChecknhsInstalledRequest" message="typens:cmsapiChecknhsInstalledRequest"/>
+      <output name="cmsapiChecknhsInstalledResponse" message="typens:cmsapiChecknhsInstalledResponse"/>
+    </operation>
+    <operation name="cmsapiCustomFields">
+      <documentation>This will return the custom fields and values in comma delimited form</documentation>
+      <input name="cmsapiCustomFieldsRequest" message="typens:cmsapiCustomFieldsRequest"/>
+      <output name="cmsapiCustomFieldsResponse" message="typens:cmsapiCustomFieldsResponse"/>
+    </operation>
+    <operation name="cmsapiGiftMessageInfo">
+      <documentation>This will return the Gift Message entity given the ID</documentation>
+      <input name="cmsapiGiftMessageInfoRequest" message="typens:cmsapiGiftMessageInfoRequest"/>
+      <output name="cmsapiGiftMessageInfoResponse" message="typens:cmsapiGiftMessageInfoResponse"/>
+    </operation>
+  </portType>
+  <binding name="{{var wsdl.handler}}Binding" type="typens:{{var wsdl.handler}}PortType">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="cmsapiChecknhsInstalled">
+      <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+      <input>
+        <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="cmsapiCustomFields">
+      <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+      <input>
+        <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="cmsapiGiftMessageInfo">
+      <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+      <input>
+        <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+  </binding>
+</definitions>

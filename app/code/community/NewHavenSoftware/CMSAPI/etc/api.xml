@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<config>
+  <api>
+    <resources>
+      <cmsapi_check>
+        <model>cmsapi/check_api</model>
+        <title>NewHaven Software Check API</title>
+        <acl>cmsapi_data</acl>
+        <methods>
+          <nhsInstalled translate="title" module="newhavensoftware_cmsapi">
+            <title>Is the NHS extension installed?</title>
+            <method>isNHS</method>
+          </nhsInstalled>
+        </methods>
+      </cmsapi_check>
+      <cmsapi_custom>
+        <model>cmsapi/custom_api</model>
+        <title>NewHaven Software Custom API</title>
+        <acl>cmsapi_data</acl>
+        <methods>
+          <fields translate="title" module="newhavensoftware_cmsapi">
+            <title>This will return the custom fields and values in comma delimited form</title>
+            <method>CustomFields</method>
+          </fields>
+        </methods>
+      </cmsapi_custom>
+      <cmsapi_gift_message>
+        <model>cmsapi/gift_message_api</model>
+        <title>NewHaven Software GiftMessage API</title>
+        <acl>cmsapi_data</acl>
+        <methods>
+          <info translate="title" module="newhavensoftware_cmsapi">
+            <title>This will return the Gift Message entity given the ID</title>
+            <method>GetGiftMessage</method>
+          </info>
+        </methods>
+      </cmsapi_gift_message>
+      <cmsapi_sales_order>
+        <model>cmsapi/sales_order_api</model>
+        <acl>sales/order</acl>
+        <title>Order API</title>
+        <methods>
+          <info translate="title" module="sales">
+            <title>Get Order Info</title>
+            <acl>sales/order/info</acl>
+          </info>
+        </methods>
+      </cmsapi_sales_order>
+      <cmsapi_catalog_product>
+        <model>cmsapi/catalog_product_api</model>
+        <acl>catalog/product</acl>
+        <title>Product API</title>
+        <methods>
+          <create translate="title" module="catalog">
+            <title>Create new product</title>
+            <acl>catalog/product/create</acl>
+          </create>
+        </methods>
+        <faults module="catalog">
+          <store_not_exists>
+            <code>100</code>
+            <message>Requested store view not found.</message>
+          </store_not_exists>
+          <product_not_exists>
+            <code>101</code>
+            <message>Product not exists.</message>
+          </product_not_exists>
+          <data_invalid>
+            <code>102</code>
+            <message>Invalid data given. Details in error message.</message>
+          </data_invalid>
+          <not_deleted>
+            <code>103</code>
+            <message>Product not deleted. Details in error message.</message>
+          </not_deleted>
+          <product_type_not_exists>
+            <code>104</code>
+            <message>Product type is not in allowed types.</message>
+          </product_type_not_exists>
+          <product_attribute_set_not_exists>
+            <code>105</code>
+            <message>Product attribute set is not existed</message>
+          </product_attribute_set_not_exists>
+          <product_attribute_set_not_valid>
+            <code>106</code>
+            <message>Product attribute set is not belong catalog product entity type</message>
+          </product_attribute_set_not_valid>
+        </faults>
+      </cmsapi_catalog_product>
+    </resources>
+    <v2>
+      <resources_function_prefix>
+        <cmsapi_check>cmsapiCheck</cmsapi_check>
+        <cmsapi_custom>cmsapiCustom</cmsapi_custom>
+        <cmsapi_catalog_product>cmsapiCatalogProduct</cmsapi_catalog_product>
+        <cmsapi_sales_order>cmsapiSalesOrder</cmsapi_sales_order>
+        <cmsapi_gift_message>cmsapiGiftMessage</cmsapi_gift_message>
+      </resources_function_prefix>
+    </v2>
+    <acl>
+      <resources>
+        <cmsapi_data translate="title" module="newhavensoftware_cmsapi">
+          <title>CMSAPI data</title>
+          <sort_order>3</sort_order>
+        </cmsapi_data>
+      </resources>
+    </acl>
+  </api>
+</config>

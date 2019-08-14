@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<package>
+    <name>NewHavenSoftware_CMSAPI</name>
+    <version>9.0.1.9</version>
+    <stability>stable</stability>
+    <license uri="http://opensource.org/licenses/osl-3.0.php">OSL v3.0</license>
+    <channel>community</channel>
+    <extends/>
+    <summary>This extension extends the v2 API for integration with NewHaven Software's Commerce Management System.</summary>
+    <description>This extension extends the v2 API for integration with NewHaven Software's Commerce Management System (CMS).&lt;br /&gt;&lt;br /&gt;&#xD;
+&#xD;
+Adds the following to the v2 API:&#xD;
+&lt;ol&gt;&lt;ul&gt;&lt;strong&gt;cmsapiChecknhsInstalled:&lt;/strong&gt; To verify this extension has been added to the API&lt;/ul&gt;&#xD;
+&lt;ul&gt;&lt;strong&gt;cmsapiCustomFields:&lt;/strong&gt; This API call is used to get order level data based on the fields entered in System Configuration that may not be published in the v2 API&lt;/ul&gt;&#xD;
+&lt;ul&gt;&lt;strong&gt;cmsapiGiftMessageInfo:&lt;/strong&gt; This API call is used to gain access to the "To" and "From" fields used in gift messages&lt;/ul&gt;&#xD;
+&lt;ul&gt;Extend &lt;strong&gt;catalogProductCreate:&lt;/strong&gt; to allow the passing of additional productdata fields: configurable_products and configurable_attributes (structure documented in the wsdl) &lt;/ul&gt;&#xD;
+&lt;ul&gt;Extend &lt;strong&gt;salesProductInfo:&lt;/strong&gt; for items the product_options property was changed to json (from serialized php). This is required for downloading orders containing configurable products&lt;/ul&gt;&#xD;
+&lt;/ol&gt;&#xD;
+&#xD;
+This extension is recommended for integration with the CMS eCMS module.&lt;br /&gt;&lt;br /&gt;</description>
+    <notes>&lt;strong&gt;9.0.1.9&lt;/strong&gt; 10/14/2013&lt;br /&gt;&#xD;
+In the V2 API changed the salesOrderInfo item.product_options from serialized php to json text for configurable product attribute information used during order download into CMS.&lt;br /&gt;&lt;br /&gt;&#xD;
+&#xD;
+&lt;strong&gt;9.0.1.8&lt;/strong&gt; 09/18/2013&lt;br /&gt;&#xD;
+Added cmsapiGiftMessageInfo to the V2 api that will return an object with to,from, and message values. See the NewHaven Software Magento Setup Guide for more information about the message template plug-in option.&lt;br /&gt;&lt;br /&gt;&#xD;
+&#xD;
+&lt;strong&gt;9.0.1.7&lt;/strong&gt;&lt;br /&gt;&#xD;
+The first Amasty Order Attributes implementation was not working properly. In this release added more flexible support for custom fields. You can now define a custom field with this syntax: CLASS_API/path/fieldName. For Amasty this would be: Amasty_Orderattr_Model_Sales_Order_Api/custom/fieldName the limitation here is the class must have an info method that accepts the order increment ID as the parameter. Also the field names all need to be unique. &lt;br /&gt;&lt;br /&gt;&#xD;
+</notes>
+    <authors><author><name>Jason Morrison</name><user>jmorrison</user><email>jmorrison@newhavensoftware.com</email></author></authors>
+    <date>2013-10-14</date>
+    <time>19:48:15</time>
+    <contents><target name="magecommunity"><dir name="NewHavenSoftware"><dir name="CMSAPI"><dir name="Helper"><file name="Data.php" hash="ab4082fe27f7c6732a7f857fc326ec99"/></dir><dir name="Model"><dir name="Catalog"><dir name="Product"><dir name="Api"><file name="V2.php" hash="aad926da6a10b2c2de3c28abac0eaf52"/></dir></dir></dir><dir name="Check"><dir name="Api"><file name="V2.php" hash="c27fcf391dcf5ad7e0c86de44fd14e7c"/></dir></dir><dir name="Custom"><dir name="Api"><file name="V2.php" hash="6e720e7e3704257a045905a1f639eaa5"/></dir></dir><dir name="Gift"><dir name="Api"><file name="V2.php" hash="bf989c37e7277dd55b50e378e15cd19a"/></dir><dir name="Message"><dir name="Api"><file name="V2.php" hash="0a5ffdd3fc3760b311970169858d5475"/></dir></dir></dir><dir name="Sales"><dir name="Order"><dir name="Api"><file name="V2.php" hash="03443ab449fb867f4a5bb08877bea5d6"/></dir></dir></dir></dir><dir name="etc"><file name="adminhtml.xml" hash="ba4c36dbd3d346c3561fb5822d5fd3b4"/><file name="api.xml" hash="1fa0bb1db0aa578270f5bc210e66daac"/><file name="config.xml" hash="cdbcd30695f2536cd40633348d9d1d14"/><file name="system.xml" hash="ab6f7ba6be148634383f9e3a8f63e2cd"/><file name="wsdl.xml" hash="93ea17ae19287afccf46543c1ac01a30"/></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="NewHavenSoftware_CMSAPI.xml" hash="f858d97574f528dc237ad32e0e96ae73"/></dir></target></contents>
+    <compatible/>
+    <dependencies><required><php><min>5.2.0</min><max>5.5.3</max></php></required></dependencies>
+</package>
