@@ -1,16 +1,19 @@
 {
-    "name": "OpenMageModuleFostering/NewHavenSoftware_CMSAPI",
+    "name": "OpenMageModuleFostering\/NewHavenSoftware_CMSAPI",
     "type": "magento-module",
     "license": "OSL-v3.0",
     "homepage": "",
     "description": "This extension extends the v2 API for integration with NewHaven Software's Commerce Management System.",
     "authors": [
-    {
-        "name": "Jason Morrison",
-        "email": "jmorrison@newhavensoftware.com"
-    }
-],
+        {
+            "name": "Jason Morrison",
+            "email": "jmorrison@newhavensoftware.com"
+        }
+    ],
     "suggest": {
-        "magento-hackathon/magento-composer-installer": "*"
-    }
+        "magento-hackathon\/magento-composer-installer": "*"
+    },
+    "keywords": [
+        "openmage-module"
+    ]
 }
