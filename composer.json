@@ -1,7 +1,7 @@
 {
-    "name": "OpenMageModuleFostering\/NewHavenSoftware_CMSAPI",
+    "name": "openmage-module-fostering\/newhavensoftware_cmsapi",
     "type": "magento-module",
-    "license": "OSL-v3.0",
+    "license": "OSL-3.0",
     "homepage": "",
     "description": "This extension extends the v2 API for integration with NewHaven Software's Commerce Management System.",
     "authors": [
